@@ -1,31 +1,39 @@
-"""Algorithm: Packing Clothes in a Luggage Bag
+"""
+Algorithm to arrange clothes in an almirah:
 
-1. Start
-2. Identify trip duration and activities
-3. List required clothes and accessories
-4. Separate clothes into categories
-5. Roll casual clothes to save space
-6. Fold formal and delicate clothes
-7. Place heavy items at the bottom
-8. Keep frequently used items on top
-9. End
+1.⁠ ⁠Take the list of clothes with their categories.
+2.⁠ ⁠Group clothes based on category (formal, casual, traditional, etc.).
+3.⁠ ⁠Decide priority of categories based on usage frequency.
+4.⁠ ⁠Assign top shelves to most-used categories.
+5.⁠ ⁠Place less-used categories on lower shelves.
+6.⁠ ⁠Ensure no shelf is overloaded.
+7.⁠ ⁠Display the final shelf-wise arrangement.
 """
 
-# Code Implementation
+def arrange_almirah(clothes, shelves):
+    arrangement = {}
+    shelf_number = 1
 
-def pack_luggage():
-    luggage = {
-        "Bottom Layer": ["Shoes", "Jeans"],
-        "Middle Layer": ["T-shirts", "Casual Wear"],
-        "Top Layer": ["Formal Dress", "Delicate Clothes"],
-        "Side Pouch": ["Socks", "Accessories"]
-    }
+    for category in clothes:
+        if shelf_number > shelves:
+            break
+        arrangement[f"Shelf {shelf_number}"] = clothes[category]
+        shelf_number += 1
 
-    return luggage
+    return arrangement
 
 
 # Example usage
-packed_items = pack_luggage()
+clothes = {
+    "Casual Wear": ["T-shirt", "Jeans", "Shirt"],
+    "Formal Wear": ["Blazer", "Formal Shirt", "Trousers"],
+    "Traditional Wear": ["Kurta", "Sherwani"],
+    "Sports Wear": ["Track Pants", "Jersey"]
+}
 
-for section, items in packed_items.items():
-    print(section, ":", items)
+total_shelves = 4
+
+final_arrangement = arrange_almirah(clothes, total_shelves)
+
+for shelf, items in final_arrangement.items():
+    print(shelf, "->", items)
